@@ -200,7 +200,7 @@ class TestBenchNectarchainConverterTool:
 
     def run_tool(self):
         evtspfile, nofdrawers, noffiles = self.extract_file_details()
-        if self.max_events == None:
+        if self.max_events is None:
             self.max_events = evtspfile * noffiles
 
         if self.events_per_slice > evtspfile:
