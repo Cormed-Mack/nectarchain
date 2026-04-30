@@ -16,10 +16,8 @@ import numpy as np
 from ctapipe.containers import EventType
 from ctapipe.instrument import SubarrayDescription
 from ctapipe.io import HDF5TableWriter
-from ctapipe_io_nectarcam import LightNectarCAMEventSource
 
 from nectarchain.data.container import (
-    ChargesContainer,
     ChargesContainers,
     WaveformsContainer,
     WaveformsContainers,
