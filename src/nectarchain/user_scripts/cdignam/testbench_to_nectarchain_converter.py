@@ -31,6 +31,14 @@ log.handlers = logging.getLogger("__main__").handlers
 log.setLevel(logging.INFO)
 
 
+def find_all(pattern, path):
+    result = []
+    for root, dirs, files in os.walk(path):
+        for filename in fnmatch.filter(files, pattern):
+            result.append(filename)
+    return result
+
+
 class TestBenchNectarchainConverterTool:
     name = "TestBenchNectarchainConverterTool"
 
@@ -50,18 +58,11 @@ class TestBenchNectarchainConverterTool:
         self.method = method
         self.extractor_kwargs = extractor_kwargs
 
-    def find_all(self, pattern, path):
-        result = []
-        for root, dirs, files in os.walk(path):
-            for filename in fnmatch.filter(files, pattern):
-                result.append(filename)
-        return result
-
     def extract_file_details(self):
         file_dir = os.path.join(
             os.environ["NECTARCAMDATA"], f"testbenchrun/RUN_{self.run_number}/"
         )
-        files = self.find_all("*.npy", file_dir)
+        files = find_all("*.npy", file_dir)
         drawers = []
         nfiles = []
         evtstotal1 = 0
@@ -87,7 +88,6 @@ class TestBenchNectarchainConverterTool:
         nevt = len(data[:, 0])
         nbin = int((len(data[0, :]) - 7) / 14)
         nshift = 7
-        date_evt = data[:, 0]
         dupulse = np.zeros([7, 2, nevt, nbin])
         for idu in range(7):
             for ilghg in range(2):
