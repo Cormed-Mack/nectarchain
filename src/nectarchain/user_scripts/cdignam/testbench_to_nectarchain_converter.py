@@ -1,11 +1,12 @@
-# Load IRAP data into nectarchain charge and waveform files
-# Example of tool use below
-# Place IRAP .npy or .h5 files in NECTARCAMDATA/testbenchrun/RUN#####/
-# Tool will convert these into nectarchain readable waveform and charge container objects
-# available in the usual directories
-# There is a required dummy subarray h5 file in the same directory, this is needed to write the
-# correct data that NC is expecting.
-
+"""
+Load IRAP data into nectarchain charge and waveform files
+Example of tool use below
+Place IRAP .npy or .h5 files in NECTARCAMDATA/testbenchrun/RUN#####/
+Tool will convert these into nectarchain readable waveform and charge container objects
+available in the usual directories
+There is a required dummy subarray h5 file in the same directory, this is needed to write the
+correct data that NC is expecting.
+"""
 
 import fnmatch
 import logging
